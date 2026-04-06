@@ -139,18 +139,56 @@ function renderMenuItems(items) {
 
     const getFallbackImage = (cat, nom) => {
         const text = (String(cat) + ' ' + String(nom)).toLowerCase();
-        if (text.includes('burger') || text.includes('hamburguesa')) return 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop';
-        if (text.includes('pizza')) return 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&h=400&fit=crop';
-        if (text.includes('taco')) return 'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600&h=400&fit=crop';
-        if (text.includes('trago') || text.includes('mojito') || text.includes('sour') || text.includes('gin') || text.includes('vodka') || text.includes('spritz')) return 'https://images.unsplash.com/photo-1536935338788-846bb9981813?w=600&h=400&fit=crop';
-        if (text.includes('cerveza') || text.includes('schop')) return 'https://images.unsplash.com/photo-1566816288339-bc78b30f3c5f?w=600&h=400&fit=crop';
-        if (text.includes('sandwich') || text.includes('sándwich') || text.includes('completo') || text.includes('chacarero')) return 'https://images.unsplash.com/photo-1619881589316-56c7f9e6b587?w=600&h=400&fit=crop';
-        if (text.includes('ensalada') || text.includes('verde')) return 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop';
-        if (text.includes('dulce') || text.includes('postre') || text.includes('helado') || text.includes('cafe') || text.includes('café') || text.includes('calentito') || text.includes('waffle')) return 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&h=400&fit=crop';
-        if (text.includes('tabla')) return 'https://images.unsplash.com/photo-1541529086526-db283c563270?w=600&h=400&fit=crop';
-        if (text.includes('camaron') || text.includes('camarón') || text.includes('ostiones') || text.includes('marisco')) return 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&h=400&fit=crop';
-        if (text.includes('carne') || text.includes('lomo') || text.includes('filete') || text.includes('entraña') || text.includes('cerdo')) return 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&h=400&fit=crop';
-        return 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop';
+        
+        // Hashing simple para asignar siempre la misma imagen estática a la misma fila y que no parpadee
+        const nameHash = Array.from(text).reduce((s, c) => Math.imul(31, s) + c.charCodeAt(0) | 0, 0);
+        const getImg = (arr) => {
+            const id = arr[Math.abs(nameHash) % arr.length];
+            return `https://images.unsplash.com/photo-${id}?w=600&h=400&fit=crop`;
+        };
+
+        if (text.includes('burger') || text.includes('hamburguesa')) {
+            return getImg(['1568901346375-23c9450c58cd', '1586816001966-79b736744398', '1550547660-d9450f859349', '1551782450-a2132b4ba21d', '1608767221051-224aee50bba2']);
+        }
+        if (text.includes('pizza')) {
+            return getImg(['1513104890138-7c749659a591', '1604382354936-07c5d9983bd3', '1565299624946-b28f40a0ae38', '1574071318508-1cdbab80d008']);
+        }
+        if (text.includes('taco')) {
+            return getImg(['1551504734-5ee1c4a1479b', '1564834724105-9d8b7280f9e1', '1584345638104-1b7eb77c772c']);
+        }
+        if (text.includes('trago') || text.includes('mojito') || text.includes('sour') || text.includes('gin') || text.includes('vodka') || text.includes('spritz') || text.includes('margarita')) {
+            return getImg(['1536935338788-846bb9981813', '1514362545857-3bc16c4c7d1b', '1556679343-c7306c1976bc', '1497534547346-6084614ffcf1']);
+        }
+        if (text.includes('cerveza') || text.includes('schop')) {
+            return getImg(['1566816288339-bc78b30f3c5f', '1535958636474-b021ee887b13', '1572116469696-ed7aeeafabe6']);
+        }
+        if (text.includes('cafe') || text.includes('café') || text.includes('calentito') || text.includes('capuchino')) {
+            return getImg(['1497935586351-b66a4ea90fc6', '1509042239860-f550ce710b93', '1495474472205-162847d1b443']);
+        }
+        if (text.includes('dulce') || text.includes('postre') || text.includes('helado') || text.includes('waffle')) {
+            return getImg(['1551024601-bec78aea704b', '1563729784474-d77dbb933a9e', '1587314168485-64bc9ba370e5', '1550617931-e17a7b70dcc0']);
+        }
+        if (text.includes('sandwich') || text.includes('sándwich') || text.includes('completo') || text.includes('chacarero')) {
+            return getImg(['1619881589316-56c7f9e6b587', '1528735602780-2552fd46c7af', '1481070555726-e2fe834ce505']);
+        }
+        if (text.includes('ensalada') || text.includes('verde') || text.includes('lechuga')) {
+            return getImg(['1512621776951-a57141f2eefd', '1540189549336-e6e99c3679fe', '1505253716362-afbea18ae27f']);
+        }
+        if (text.includes('tabla') || text.includes('pichanga') || text.includes('chorrillana')) {
+            return getImg(['1541529086526-db283c563270', '1625938146747-d5d2ccadfb72']);
+        }
+        if (text.includes('camaron') || text.includes('camarón') || text.includes('ostiones') || text.includes('marisco')) {
+            return getImg(['1565557623262-b51c2513a641']);
+        }
+        if (text.includes('carne') || text.includes('lomo') || text.includes('filete') || text.includes('entraña') || text.includes('cerdo')) {
+            return getImg(['1555939594-58d7cb561ad1', '1544025162-d76694265947', '1529692236671-f1f62065a1c1', '1600891964092-4316c288032e', '1594041680534-f8758d4a9805', '1588168333981-d419842a22be']);
+        }
+        if (text.includes('jugo') || text.includes('bebida') || text.includes('agua')) {
+            return getImg(['1513558161293-cda765e31d9b', '1556679343-c7306c1976bc']);
+        }
+        
+        // Imagen generica super premium de restaurante de carnes si no machea nada
+        return getImg(['1414235077428-971158a17be8', '1544025162-d76694265947', '1555939594-58d7cb561ad1']);
     };
 
     items.forEach((item, index) => {
