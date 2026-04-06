@@ -137,6 +137,22 @@ function renderMenuItems(items) {
         return '$' + cleaned;
     };
 
+    const getFallbackImage = (cat, nom) => {
+        const text = (String(cat) + ' ' + String(nom)).toLowerCase();
+        if (text.includes('burger') || text.includes('hamburguesa')) return 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop';
+        if (text.includes('pizza')) return 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&h=400&fit=crop';
+        if (text.includes('taco')) return 'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600&h=400&fit=crop';
+        if (text.includes('trago') || text.includes('mojito') || text.includes('sour') || text.includes('gin') || text.includes('vodka') || text.includes('spritz')) return 'https://images.unsplash.com/photo-1536935338788-846bb9981813?w=600&h=400&fit=crop';
+        if (text.includes('cerveza') || text.includes('schop')) return 'https://images.unsplash.com/photo-1566816288339-bc78b30f3c5f?w=600&h=400&fit=crop';
+        if (text.includes('sandwich') || text.includes('sándwich') || text.includes('completo') || text.includes('chacarero')) return 'https://images.unsplash.com/photo-1619881589316-56c7f9e6b587?w=600&h=400&fit=crop';
+        if (text.includes('ensalada') || text.includes('verde')) return 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop';
+        if (text.includes('dulce') || text.includes('postre') || text.includes('helado') || text.includes('cafe') || text.includes('café') || text.includes('calentito') || text.includes('waffle')) return 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&h=400&fit=crop';
+        if (text.includes('tabla')) return 'https://images.unsplash.com/photo-1541529086526-db283c563270?w=600&h=400&fit=crop';
+        if (text.includes('camaron') || text.includes('camarón') || text.includes('ostiones') || text.includes('marisco')) return 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&h=400&fit=crop';
+        if (text.includes('carne') || text.includes('lomo') || text.includes('filete') || text.includes('entraña') || text.includes('cerdo')) return 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&h=400&fit=crop';
+        return 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop';
+    };
+
     items.forEach((item, index) => {
         // Ignorar filas en blanco
         if (!item[COLUMS.nombre]) return;
@@ -148,8 +164,9 @@ function renderMenuItems(items) {
         card.className = `menu-card ${isUnavailable ? 'unavailable' : ''}`;
         card.style.animationDelay = `${index * 0.1}s`; // Efecto cascada
         
-        // Imagen por defecto si no hay URL
-        const imgUrl = item[COLUMS.imagen] || 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop';
+        // Imagen inteligente por defecto si no hay URL
+        const fallbackImg = getFallbackImage(item[COLUMS.categoria], item[COLUMS.nombre]);
+        const imgUrl = item[COLUMS.imagen] || fallbackImg;
         
         // Precio Lógica (Dual pricing)
         let priceHtml = '';
