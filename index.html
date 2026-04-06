@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fogón Nahuelbuta | Menú Premium</title>
+    <!-- Modern premium fonts: Cormorant (serif) + Montserrat (sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Premium Loader -->
+    <div id="loader-wrapper" class="loader-wrapper">
+        <div class="loader-content">
+            <h1 class="loader-brand">Fogón Nahuelbuta</h1>
+            <p class="loader-sub" style="letter-spacing: 2px; max-width: 600px; line-height: 1.6;">Carnes 100% naturales, sin preservantes ni aditivos.</p>
+            <div class="elegant-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <main id="main-content" class="hidden">
+        
+        <header class="hero">
+            <!-- Usaremos una imagen de fondo muy premium de una parrilla oscura generada si es posible -->
+            <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&q=80');"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content container">
+                <h1 class="hero-title">FOGÓN NAHUELBUTA</h1>
+                <p class="hero-subtitle">CARNES PREMIUM 100% NATURALES</p>
+                <div class="hero-line"></div>
+            </div>
+        </header>
+
+        <section class="menu-section">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Nuestra Selección</h2>
+                    <p>Descubre nuestra carta, cortes cuidadosamente seleccionados</p>
+                </div>
+                
+                <!-- Filtros de Categoría -->
+                <div id="category-filters" class="category-filters"></div>
+                
+                <!-- Menú Grid -->
+                <div id="menu-grid" class="menu-grid">
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                    <div class="skeleton-card"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <div class="container footer-content">
+                <div class="footer-brand">
+                    <h2>Fogón Nahuelbuta</h2>
+                </div>
+                <div class="footer-info">
+                    <p>Carnes 100% naturales, sin preservantes ni aditivos.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Fogón Nahuelbuta. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
