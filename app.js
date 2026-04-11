@@ -310,3 +310,68 @@ function splitCSVLine(line) {
     
     return result;
 }
+
+// ==========================================
+// PARALLAX EFECTO LUXURY DARK
+// ==========================================
+// Animación de textura y gradiente en Desktop
+window.addEventListener('mousemove', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    
+    // Tilt sutil (max +- 15)
+    const percentX = (x - centerX) / centerX;
+    const percentY = (y - centerY) / centerY;
+    
+    document.documentElement.style.setProperty('--tilt-x', `${percentX * 15}deg`);
+    document.documentElement.style.setProperty('--tilt-y', `${percentY * 15}deg`);
+    document.documentElement.style.setProperty('--mouse-x', `${x}px`);
+    document.documentElement.style.setProperty('--mouse-y', `${y}px`);
+});
+
+// Acelerómetro en dispositivos móviles
+function handleOrientation(e) {
+    if (e.gamma === null || e.beta === null) return;
+    
+    let gamma = e.gamma; 
+    let beta = e.beta;
+    
+    // Limitamos la lectura de ángulo
+    if (gamma > 45) gamma = 45;
+    if (gamma < -45) gamma = -45;
+    
+    // Asumimos un ángulo de lectura base de 45 grados de inclinación en las manos
+    let normalizedBeta = beta - 45;
+    if (normalizedBeta > 45) normalizedBeta = 45;
+    if (normalizedBeta < -45) normalizedBeta = -45;
+    
+    // Dividimos para suavizar el efecto Parallax
+    document.documentElement.style.setProperty('--tilt-x', `${gamma / 2.5}deg`);
+    document.documentElement.style.setProperty('--tilt-y', `${normalizedBeta / 2.5}deg`);
+}
+
+let deviceOrientationEventGranted = false;
+
+// Pedimos permiso de acelerómetro en el primer click por seguridad (iOS 13+)
+document.body.addEventListener('click', async () => {
+    if (deviceOrientationEventGranted) return;
+    
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        try {
+            const permissionState = await DeviceOrientationEvent.requestPermission();
+            if (permissionState === 'granted') {
+                window.addEventListener('deviceorientation', handleOrientation);
+                deviceOrientationEventGranted = true;
+            }
+        } catch (err) {
+            console.log('Permisos acelerometro:', err);
+        }
+    } else {
+        // Dispositivos sin restricción explicita
+        window.addEventListener('deviceorientation', handleOrientation);
+        deviceOrientationEventGranted = true;
+    }
+}, { once: true });
