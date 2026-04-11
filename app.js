@@ -208,21 +208,22 @@ function renderMenuItems(items) {
         
         // Precio Lógica (Dual pricing)
         let priceHtml = '';
+        let dualPriceHtml = '';
         const precio1 = item[COLUMS.precio1] ? item[COLUMS.precio1].trim() : '';
         const precio2 = item[COLUMS.precio2] ? item[COLUMS.precio2].trim() : '';
         const precioPrincipal = item[COLUMS.precio] ? item[COLUMS.precio].trim() : '';
         
         if (precio1 || precio2) {
-            priceHtml = '<div class="dual-price-container">';
+            dualPriceHtml = '<div class="dual-price-container">';
             if (precio1) {
                 const etiq1 = item[COLUMS.etiqueta1] ? item[COLUMS.etiqueta1].trim() : '';
-                priceHtml += `<div class="price-item"><span class="price-label">${etiq1}</span><span class="price-value">${formatPrice(precio1)}</span></div>`;
+                dualPriceHtml += `<div class="price-item"><span class="price-label">${etiq1}</span><span class="price-value">${formatPrice(precio1)}</span></div>`;
             }
             if (precio2) {
                 const etiq2 = item[COLUMS.etiqueta2] ? item[COLUMS.etiqueta2].trim() : '';
-                priceHtml += `<div class="price-item"><span class="price-label">${etiq2}</span><span class="price-value">${formatPrice(precio2)}</span></div>`;
+                dualPriceHtml += `<div class="price-item"><span class="price-label">${etiq2}</span><span class="price-value">${formatPrice(precio2)}</span></div>`;
             }
-            priceHtml += '</div>';
+            dualPriceHtml += '</div>';
         } else if (precioPrincipal) {
             priceHtml = `<span class="card-price">${formatPrice(precioPrincipal)}</span>`;
         }
@@ -242,6 +243,7 @@ function renderMenuItems(items) {
                     ${priceHtml}
                 </div>
                 ${descHtml}
+                ${dualPriceHtml}
             </div>
         `;
         
