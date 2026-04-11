@@ -139,7 +139,7 @@ body {
     top: -5%; left: -5%; width: 110%; height: 110%;
     background-size: cover;
     background-position: center;
-    filter: grayscale(80%) sepia(20%) hue-rotate(330deg) brightness(0.6);
+    filter: brightness(0.6) contrast(1.1); /* Colores intensos de naturaleza */
     transform: translate(calc(var(--tilt-x) * -0.5px), calc(var(--tilt-y) * -0.5px)) scale(1.05);
     transition: transform 0.1s ease-out;
 }
@@ -499,19 +499,48 @@ body {
     .container { padding: 0 20px; }
     .hero-title { font-size: 2.5rem; letter-spacing: 0.1em; }
     .hero-subtitle { font-size: 0.7rem; letter-spacing: 0.2em; }
-    .section-heading h2 { font-size: 2rem; }
+    .section-heading h2 { font-size: 1.8rem; }
+    .section-heading p { font-size: 0.8rem; padding: 0 10px; }
     
     .category-filters {
-        gap: 1rem;
-        margin-bottom: 3rem;
+        gap: 0.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .filter-btn {
+        font-size: 0.7rem;
     }
     
     .menu-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
+    }
+    
+    /* Cartas más compactas en móvil para ver más menú por scroll */
+    .card-image-wrapper {
+        aspect-ratio: 16/9; /* Más corta de altura */
     }
     
     .card-content {
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
+    
+    .card-header {
+        margin-bottom: 0.6rem;
+    }
+    
+    .card-title {
+        font-size: 1.35rem;
+    }
+    
+    .card-price {
+        font-size: 0.95rem;
+    }
+    
+    .card-desc {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+    
+    .footer-content { margin-bottom: 2rem; }
 }
