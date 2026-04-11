@@ -125,8 +125,8 @@ body {
 /* === Hero Section === */
 .hero {
     position: relative;
-    height: 70vh;
-    min-height: 450px;
+    height: 55vh;
+    min-height: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,7 +153,7 @@ body {
 .hero-content {
     position: relative;
     z-index: 2;
-    padding-top: 4rem;
+    margin-top: -3rem; /* Lo sube para quitar espacio muerto abajo */
 }
 
 .hero-title {
@@ -186,7 +186,7 @@ body {
 /* === Section Heading === */
 .section-heading {
     position: absolute;
-    bottom: 2rem;
+    bottom: 3rem;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -256,11 +256,12 @@ body {
 }
 
 .filter-btn.active {
-    background: rgba(196, 140, 92, 0.25);
-    border-color: var(--accent);
-    color: var(--accent);
+    background: rgba(245, 198, 109, 0.15); /* Fondo dorado ahumado */
+    border-color: #f5c66d; /* Oro brillante */
+    color: #f5c66d;
     font-weight: 400;
-    box-shadow: 0 4px 15px rgba(196, 140, 92, 0.1);
+    box-shadow: 0 0 15px rgba(245, 198, 109, 0.4), inset 0 0 8px rgba(245, 198, 109, 0.2); /* Resplandor interior y exterior oro neon */
+    transform: translateY(-2px);
 }
 
 /* === Menu Grid === */
